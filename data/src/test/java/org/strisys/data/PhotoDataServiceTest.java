@@ -47,7 +47,7 @@ public class PhotoDataServiceTest {
         assertThat(state.getUuid()).isEqualTo(originalState.getUuid());
         assertThat(state.getFileName()).isEqualTo(originalState.getFileName());
         assertThat(state.getContentType()).isEqualTo(originalState.getContentType());
-        assertThat(state.getIsNull()).isEqualTo(originalState.getIsNull());
+        assertThat(state.isNull()).isEqualTo(originalState.isNull());
         assertThat(state.getId()).isGreaterThan(0);
     }
 
