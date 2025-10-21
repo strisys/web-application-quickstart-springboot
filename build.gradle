@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+repositories {
+    mavenCentral()
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'idea'
+
+    group = 'org.strisys'
+    version = '1.0'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    java {
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.java.get())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
+
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
+        }
+    }
+
+    dependencies {
+        // guava
+        implementation libs.guava
+
+        // lombok
+        compileOnly libs.lombok
+        annotationProcessor libs.lombok
+        testCompileOnly libs.lombok
+        testAnnotationProcessor libs.lombok
+
+        // junit
+        testImplementation platform(libs.junit.bom)
+        testImplementation libs.bundles.test.base
+    }
+
+    tasks.named('test', Test) {
+        useJUnitPlatform()
+    }
+}
+
+tasks.named('jar') {
+    enabled = false
+}

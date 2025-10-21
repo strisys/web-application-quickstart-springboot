@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(':model'), project(':data')
+    implementation libs.bundles.boot.service
+}
+

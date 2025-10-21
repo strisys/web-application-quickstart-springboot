@@ -1,0 +1,19 @@
+plugins {
+    alias libs.plugins.springBoot
+}
+
+springBoot {
+    buildInfo()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    implementation project(":model"), project(":service")
+    implementation libs.bundles.boot.web
+    developmentOnly libs.spring.boot.web.devtools
+}

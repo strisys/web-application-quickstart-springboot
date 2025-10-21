@@ -1,0 +1,10 @@
+dependencies {
+    implementation project(':model')
+    implementation libs.bundles.boot.data
+
+    // database
+    runtimeOnly libs.h2
+    testImplementation libs.h2
+}
+
+

@@ -1,0 +1,8 @@
+rootProject.name = "strisys-gradle-springboot"
+
+include "common"
+include "model"
+include "data"
+include "service"
+include "api"
+include 'common'

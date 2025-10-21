@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  api:
+    image: amazoncorretto:21
+    container_name: spring-api
+    command: >
+      java
+      -Dfile.encoding=UTF-8
+      -Dsun.stdout.encoding=UTF-8
+      -Dsun.stderr.encoding=UTF-8
+      -jar /app/api.jar
+    volumes:
+      - ./api/build/libs/api.jar:/app/api.jar
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+    restart: unless-stopped
