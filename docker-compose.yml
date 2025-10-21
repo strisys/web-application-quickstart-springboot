@@ -4,16 +4,16 @@ services:
   api:
     image: amazoncorretto:21
     container_name: spring-api
+    environment:
+      API_JAR_VERSION: ${API_JAR_VERSION:-1.0}   # one place to define default
+      SPRING_PROFILES_ACTIVE: default
     command: >
-      java
+      sh -c "java
       -Dfile.encoding=UTF-8
       -Dsun.stdout.encoding=UTF-8
       -Dsun.stderr.encoding=UTF-8
-      -jar /app/api.jar
+      -jar /app/api-$$API_JAR_VERSION.jar"
     volumes:
-      - ./api/build/libs/api.jar:/app/api.jar
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_PROFILES_ACTIVE: default
+      - ./api/build/libs/api-${API_JAR_VERSION:-1.0}.jar:/app/api-${API_JAR_VERSION:-1.0}.jar
+    ports: ["8080:8080"]
     restart: unless-stopped
