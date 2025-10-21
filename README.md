@@ -14,7 +14,7 @@ gradle clean api:bootRun
 
 ### Docker Compose
 
-To run in a Docker container, first build a Jar file from the [IntelliJ IDEA Gradle tool window](https://www.jetbrains.com/help/idea/jetgradle-tool-window.html)
+To run in a Docker container, first build a .jar file from the [IntelliJ IDEA Gradle tool window](https://www.jetbrains.com/help/idea/jetgradle-tool-window.html)
 
 ```bash
 gradle clean api:bootJar
