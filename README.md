@@ -1,2 +1,1 @@
-# web-application-quickstart-springboot
-Web Application Quickstart using Spring Boot
+# Web Application Quickstart using Springboot
