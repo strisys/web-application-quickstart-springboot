@@ -16,7 +16,7 @@ import org.strisys.service.PhotoService;
 
 @Slf4j
 @RestController
-@RequestMapping({"/photos"})
+@RequestMapping({"api/photos"})
 public class PhotoController {
     private final PhotoService service;
 

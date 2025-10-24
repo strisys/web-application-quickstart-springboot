@@ -2,7 +2,7 @@
     window.app = {
         baseUrl: "",
         getUrl: (path) => {
-            return `${window.app.baseUrl}/${path}`
+            return `${window.app.baseUrl}/api/photos/${path}`
         },
         upload: async function (file) {
             const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
@@ -29,7 +29,7 @@
             formData.append("data", file);
 
             try {
-                const response = await fetch(window.app.getUrl("photos/upload"), {
+                const response = await fetch(window.app.getUrl("upload"), {
                     method: "POST",
                     body: formData
                 });
@@ -46,7 +46,7 @@
         },
         fetchPhotos: async function () {
             try {
-                const response = await fetch(window.app.getUrl("photos"), {
+                const response = await fetch(window.app.getUrl(""), {
                     method: "GET"
                 });
 
@@ -65,7 +65,7 @@
 
         downloadPhoto: async function (id) {
             try {
-                const response = await fetch(window.app.getUrl(`photos/download/${id}`), {
+                const response = await fetch(window.app.getUrl(`download/${id}`), {
                     method: "GET"
                 });
 
