@@ -122,7 +122,7 @@ testcontainers-junit = { module = "org.testcontainers:junit-jupiter", version.re
 testcontainers-localstack = { module = "org.testcontainers:localstack", version.ref = "testcontainers" }
 
 [bundles]
-boot-web = ["spring-boot-starter-web", "spring-boot-starter-aop", "spring-boot-starter-actuator", "spring-beans", "springdoc-openapi-starter-webmvc-ui"]
+boot-web = ["spring-boot-starter-web", "spring-boot-starter-aop", "spring-boot-starter-actuator", "spring-beans", "springdoc-openapi-starter-webmvc-ui", "spring-boot-starter-security"]
 boot-model = ["jackson-databind", "jakarta-validation", "spring-boot-starter-validation", "jakarta-persistence"]
 boot-data = ["spring-boot-starter-data-jpa", "jakarta-validation"]
 boot-service = ["spring-context", "spring-aop", "spring-tx", "jakarta-validation", "jakarta-persistence", "slf4j-api"]
