@@ -3,7 +3,7 @@ dependencies {
     implementation libs.bundles.boot.data
 
     // database
-    runtimeOnly libs.h2
+    implementation libs.h2
     testImplementation libs.h2
 }
 
