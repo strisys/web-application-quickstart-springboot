@@ -8,12 +8,13 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
+import org.strisys.data.rdms.H2ServerConfig;
 import org.strisys.model.entity.Photo;
 import org.strisys.model.entity.PhotoState;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-@Import(PhotoDataService.class)
+@Import({ PhotoDataService.class, H2ServerConfig.class, TestUtil.class })
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
 public class PhotoDataServiceTest {
@@ -23,19 +24,15 @@ public class PhotoDataServiceTest {
     @Autowired
     private TestEntityManager entityManager;
 
+    @Autowired
+    private TestUtil testUtil;
 
     @BeforeAll
     static void startH2Servers() throws SQLException {
-        H2ServerUtil.start();
     }
 
-    @AfterAll
-    static void stopH2Servers() {
-        H2ServerUtil.stop();
-    }
-
-    private static void tryWait(Integer waitSeconds) {
-        H2ServerUtil.tryWait(waitSeconds);
+    private void tryWait(Integer waitSeconds) {
+        testUtil.tryWait(waitSeconds);
     }
 
     private PhotoState create() {
@@ -64,7 +61,7 @@ public class PhotoDataServiceTest {
         assertMatch(fetched.getState(), originalState);
 
         // View data in IntelliJ
-        tryWait(20);
+        tryWait(0);
 
         // Apply, Assert (post fetch)
         Photo deleted = service.remove(persisted.getUuid());

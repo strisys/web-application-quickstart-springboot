@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@Profile("dev")
+@Profile({"local", "test"})
 public class H2ServerConfig {
 
     @Bean(initMethod = "start", destroyMethod = "stop")

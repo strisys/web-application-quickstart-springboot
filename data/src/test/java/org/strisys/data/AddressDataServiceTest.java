@@ -11,29 +11,24 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.strisys.data.rdms.H2ServerConfig;
 import org.strisys.model.entity.AddressState;
 import org.strisys.model.entity.Address;
 
 @DataJpaTest
-@Import(AddressDataService.class)
+@Import({ AddressDataService.class, H2ServerConfig.class, TestUtil.class })
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
 public class AddressDataServiceTest {
     @Autowired
     private AddressDataService addressService;
 
-    @BeforeAll
-    static void startH2Servers() throws SQLException {
-        H2ServerUtil.start();
-    }
+    @Autowired
+    private TestUtil testUtil;
 
-    @AfterAll
-    static void stopH2Servers() {
-        H2ServerUtil.stop();
-    }
-
-    private static void tryWait(Integer waitSeconds) {
-        H2ServerUtil.tryWait(waitSeconds);
+    private void tryWait(Integer waitSeconds) {
+        testUtil.tryWait(waitSeconds);
     }
 
     private AddressState create() {

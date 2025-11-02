@@ -47,6 +47,10 @@ subprojects {
     tasks.named('test', Test) {
         useJUnitPlatform()
     }
+
+    tasks.withType(Test).configureEach {
+        jvmArgs "-XX:+EnableDynamicAgentLoading"
+    }
 }
 
 tasks.named('jar') {

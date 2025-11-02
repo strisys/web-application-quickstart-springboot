@@ -3,7 +3,7 @@
     <ExternalSystemSettings>
       <option name="env">
         <map>
-          <entry key="SPRING_PROFILES_ACTIVE" value="dev" />
+          <entry key="SPRING_PROFILES_ACTIVE" value="local" />
         </map>
       </option>
       <option name="executionName" />
