@@ -1,0 +1,34 @@
+# ---- Test stage ----
+FROM amazoncorretto:21 AS test
+WORKDIR /app
+
+# Copy everything so all modules (e.g., :common, :api) exist
+COPY . .
+
+# Normalize wrapper line endings and make it executable (Windows-safe)
+RUN sed -i 's/\r$//' gradlew && chmod +x gradlew
+
+# RUN --mount=type=cache,target=/root/.gradle \
+#     ./gradlew clean test --no-daemon
+
+
+# ---- Build stage ----
+FROM amazoncorretto:21 AS builder
+WORKDIR /app
+
+# Reuse the exact same source tree that just passed tests
+COPY --from=test /app /app
+
+# Build the bootable jar (cached with BuildKit)
+RUN --mount=type=cache,target=/root/.gradle \
+    ./gradlew bootJar --no-daemon
+
+# ---- Runtime stage ----
+FROM amazoncorretto:21
+WORKDIR /app
+
+# If your runnable jar lives in api/, adjust the path accordingly
+COPY --from=builder /app/api/build/libs/*.jar /app/app.jar
+
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
