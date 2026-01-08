@@ -14,7 +14,7 @@ export interface RouteMetadata {
   breadcrumbs: BreadcrumbItem[];
 }
 
-export function getRouteMetadata(location: Location, params: Readonly<Params<string>>): RouteMetadata {
+export function getRouteMetadata(location: Location, _: Readonly<Params<string>>): RouteMetadata {
   const breadcrumbs: BreadcrumbItem[] = [{ label: "Home", path: PATHS.HOME }];
   const path = location.pathname;
 

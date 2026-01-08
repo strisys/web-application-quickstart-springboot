@@ -32,7 +32,7 @@ function generateDocs() {
 function validateNoDuplicates() {
    const allPaths: string[] = [];
    
-   Object.entries(ROUTE_PATTERNS).forEach(([moduleName, patterns]) => {
+   Object.entries(ROUTE_PATTERNS).forEach(([_, patterns]) => {
       if (typeof patterns === 'string') {
          allPaths.push(patterns);
          return;

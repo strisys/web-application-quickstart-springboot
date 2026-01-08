@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 import { colorComponentFactory } from "./componentRegistry";
 import { ProtectedRoute } from "../../auth/ProtectedRoute";
 import { OverlayLink } from "../../navigation/OverlayLink";
-import { colorPathConfig } from "./navigation/paths";
+import { colorPathConfig, type ColorName } from "./navigation/paths";
 import Transparent from "./Transparent";
 
 const { getComponent } = colorComponentFactory();
 
 export function ColorRoute() {
-   const { colorName } = useParams<{ colorName: string }>();
+   const { colorName } = useParams<{ colorName: ColorName }>();
 
    if (!colorName) {
       return <div>No color specified.</div>;
