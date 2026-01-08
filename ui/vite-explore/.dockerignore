@@ -1,0 +1,16 @@
+**/node_modules
+npm-debug.log*
+.yarn/cache
+.pnpm-store
+dist
+build
+.next
+coverage
+.git
+.gitignore
+Dockerfile
+docker-compose*.yml
+*.local
+.env*
+.vscode
+.devcontainer
