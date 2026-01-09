@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
-import org.strisys.data.rdms.H2ServerConfig;
+import org.strisys.H2ServerConfig;
 import org.strisys.model.entity.Photo;
 import org.strisys.model.entity.PhotoState;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -6,3 +6,4 @@ include "data"
 include "service"
 include "api"
 include 'common'
+include 'integration-tests'

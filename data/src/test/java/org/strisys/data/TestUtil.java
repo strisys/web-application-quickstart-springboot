@@ -1,6 +1,7 @@
 package org.strisys.data;
 
 import org.h2.tools.Server;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -8,13 +9,7 @@ import org.springframework.stereotype.Component;
 public class TestUtil {
     private final static Integer waitSecondsDefault = 30;
     private final String jdbcUrl;
-
-    public TestUtil(Server server,
-                    @Value("${spring.datasource.url}") String dsUrl) {
-        String dbName = dsUrl.substring(dsUrl.indexOf("mem:")); // mem:appdb
-        String host = server.getURL().replace("tcp://", ""); // 192.168.1.140:9092
-        this.jdbcUrl = "jdbc:h2:tcp://" + host + "/" + dbName + ";DB_CLOSE_DELAY=-1";
-    }
+    private final boolean isServerRunning;
 
     @Value("${spring.datasource.username}")
     private String username;
@@ -22,8 +17,21 @@ public class TestUtil {
     @Value("${spring.datasource.password}")
     private String password;
 
-//    @Value("${spring.datasource.url}")
-//    private String url;
+    public TestUtil(@Autowired(required = false) Server server,
+                    @Value("${spring.datasource.url}") String dsUrl) {
+
+        if (server != null) {
+            String dbName = dsUrl.substring(dsUrl.indexOf("mem:"));
+            String host = server.getURL().replace("tcp://", "");
+            this.jdbcUrl = "jdbc:h2:tcp://" + host + "/" + dbName + ";DB_CLOSE_DELAY=-1";
+            this.isServerRunning = true;
+            return;
+        }
+
+        this.jdbcUrl = "Internal-only (H2 TCP Server is disabled)";
+        this.isServerRunning = false;
+    }
+
 
     private void printConfig() {
         System.out.println("---------------------------------------------------");

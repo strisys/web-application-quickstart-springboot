@@ -40,6 +40,7 @@ slf4j = "2.0.13"
 jakartaValidation = "3.0.2"
 jakartaPersistence = "3.1.0"
 java = "21"
+poi = "5.3.0"
 
 [libraries]
 # Boot starters
@@ -54,7 +55,6 @@ spring-boot-autoconfigure = { module = "org.springframework.boot:spring-boot-aut
 spring-boot-config-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "springBoot" }
 spring-boot-test-autoconfigure = { module = "org.springframework.boot:spring-boot-test-autoconfigure", version.ref = "springBoot" }
 spring-boot-web-devtools = { module = "org.springframework.boot:spring-boot-devtools", version.ref = "springBoot" }
-
 
 # Core Spring libs (for non-boot modules / AOP/etc.)
 spring-context = { module = "org.springframework:spring-context", version.ref = "spring" }
@@ -109,6 +109,9 @@ lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 
 # Google Guava
 guava = { module = "com.google.guava:guava", version.ref = "googleGuava" }
+
+# Excel / POI
+poi-ooxml = { module = "org.apache.poi:poi-ooxml", version.ref = "poi" }
 
 # Tests
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junitBom" }
