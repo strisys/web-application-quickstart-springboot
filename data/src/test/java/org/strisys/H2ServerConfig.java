@@ -8,13 +8,18 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 @Profile({"test"})
 public class H2ServerConfig {
+    private static Server server;
 
-    @Bean(initMethod = "start", destroyMethod = "stop")
+    @Bean(destroyMethod = "stop")
     public Server h2TcpServer() throws Exception {
-        return Server.createTcpServer(
-                "-tcp",
-                "-tcpPort", "9092",
-                "-ifNotExists"
-        );
+        if  (server != null) {
+            return server;
+        }
+
+        return (server = Server.createTcpServer(
+            "-tcp",
+            "-tcpPort", "9092",
+            "-ifNotExists"
+        )).start();
     }
 }
