@@ -2,6 +2,7 @@ package org.strisys.data;
 
 import java.util.UUID;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -15,9 +16,8 @@ import org.strisys.H2ServerConfig;
 import org.strisys.model.entity.AddressState;
 import org.strisys.model.entity.Address;
 
+@Slf4j
 @SpringBootTest
-//@DataJpaTest
-//@Import({ AddressDataService.class, H2ServerConfig.class, TestUtil.class })
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles({"test"})
 public class AddressDataServiceTest {
@@ -47,8 +47,6 @@ public class AddressDataServiceTest {
         assertThat(entity.getPostalCode()).isEqualTo(addressState.getZipCode());
         return entity;
     }
-
-
 
     @Test
     void whenPersisted_thenTestLifeCycle() {
