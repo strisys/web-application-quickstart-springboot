@@ -1,36 +1,33 @@
-// import { useEffect, type ReactElement } from "react";
-// import { useNavigate, type RouteObject } from "react-router-dom";
+import { useEffect, type ReactElement } from "react";
+import { useNavigate } from "react-router-dom";
 
-// type RouteGuard = {
-//   canActivate: () => boolean | Promise<boolean>;
-//   redirectTo?: string;
-// };
+type RouteGuard = {
+  canActivate: () => boolean | Promise<boolean>;
+  redirectTo?: string;
+};
 
-// type GuardedRouteObject = RouteObject & {
-//   guards?: RouteGuard[];
-// };
+type GuardedRouteProps = {
+  guards?: RouteGuard[];
+  element: ReactElement;
+};
 
-// // Implement guard checking component
-// export function GuardedRoute({ guards, element }: { 
-//   guards?: RouteGuard[]; 
-//   element: ReactElement 
-// }) {
-//   const navigate = useNavigate();
+export function GuardedRoute({ guards, element }: GuardedRouteProps) {
+  const navigate = useNavigate();
   
-//   useEffect(() => {
-//     const checkGuards = async () => {      
-//       for (const guard of (guards || [])) {
-//         const canActivate = (await guard.canActivate());
+  useEffect(() => {
+    const checkGuards = async () => {      
+      for (const guard of (guards || [])) {
+        const canActivate = (await guard.canActivate());
 
-//         if (!canActivate) {
-//           navigate(guard.redirectTo || '/');
-//           return;
-//         }
-//       }
-//     };
+        if (!canActivate) {
+          navigate(guard.redirectTo || '/');
+          return;
+        }
+      }
+    };
     
-//     checkGuards();
-//   }, [guards, navigate]);
+    checkGuards();
+  }, [guards, navigate]);
   
-//   return element;
-// }
+  return element;
+}
