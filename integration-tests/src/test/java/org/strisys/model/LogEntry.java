@@ -6,8 +6,6 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-import static org.hibernate.validator.internal.engine.messageinterpolation.el.RootResolver.FORMATTER;
-
 @Getter
 public class LogEntry {
     public enum Level { INFO, WARN, ERROR, DEBUG }

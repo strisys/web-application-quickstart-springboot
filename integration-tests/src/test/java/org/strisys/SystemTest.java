@@ -5,15 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.strisys.model.Scenario;
-import org.strisys.model.Scenarios;
 import org.strisys.service.ScenarioRunner;
 
 import java.io.IOException;
-import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @SpringBootTest

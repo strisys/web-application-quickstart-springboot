@@ -1,5 +1,7 @@
 package org.strisys.model;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +45,7 @@ public class Scenarios implements Iterable<Scenario> {
     }
 
     @Override
+    @NotNull
     public String toString() {
         if (scenarioList.isEmpty()) {
             return "Scenarios{count=0, items=[]}";
