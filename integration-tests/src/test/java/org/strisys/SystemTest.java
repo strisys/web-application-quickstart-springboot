@@ -8,7 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.strisys.model.Scenario;
 import org.strisys.model.Scenarios;
-import org.strisys.repository.ScenarioRepository;
+import org.strisys.service.ScenarioRunner;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,13 +20,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles({"test"})
 public class SystemTest {
     @Autowired
-    private ScenarioRepository scenarioRepository;
+    private ScenarioRunner scenarioRunner;
 
     @Test
     void runScenarios() throws IOException {
-        Scenarios scenarios = scenarioRepository.fetch();
-        log.info("Successfully loaded scenarios {}", scenarios);
-
-        assertThat(scenarios.size()).isGreaterThan(0);
+        scenarioRunner.invokeDefault();
     }
 }

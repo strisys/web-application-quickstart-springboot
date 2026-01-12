@@ -1,14 +1,25 @@
 package org.strisys.model;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class Scenarios {
+public class Scenarios implements Iterable<Scenario> {
     private final List<Scenario> scenarioList;
 
     public Scenarios(List<Scenario> list) {
         this.scenarioList = List.copyOf(list);
+    }
+
+    public Stream<Scenario> stream() {
+        return scenarioList.stream();
+    }
+
+    @Override
+    public Iterator<Scenario> iterator() {
+        return scenarioList.iterator();
     }
 
     public Optional<Scenario> tryFind(Integer id) {
