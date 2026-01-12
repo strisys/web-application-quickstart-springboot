@@ -16,8 +16,13 @@ public class ScenarioRunner {
 
     private final ScenarioRepository repository;
 
-    public void invokeDefault() throws IOException {
+    public void invoke() throws IOException {
         invoke(repository.fetch("enchilada.xlsx"));
+    }
+
+    public void invoke(Scenario scenario) {
+        execute(scenario);
+        log.info("All scenarios processed.");
     }
 
     public void invoke(Scenarios scenarios) {
@@ -28,7 +33,8 @@ public class ScenarioRunner {
 
     private void execute(Scenario scenario) {
         log.info("Running Scenario [ID: {}, Name: {}]", scenario.getId(), scenario.getName());
-        scenario.info("starting scenario execution...");
+        scenario.info("starting scenario execution ...");
+
         // Business logic goes here
     }
 }

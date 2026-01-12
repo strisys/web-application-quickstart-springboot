@@ -24,6 +24,6 @@ public class SystemTest {
 
     @Test
     void runScenarios() throws IOException {
-        scenarioRunner.invokeDefault();
+        scenarioRunner.invoke();
     }
 }
