@@ -25,10 +25,8 @@ public class SystemTest {
     @Test
     void runScenarios() throws IOException {
         Scenarios scenarios = scenarioRepository.fetch();
-        List<Scenario> all = scenarios.getAll();
-
         log.info("Successfully loaded scenarios {}", scenarios);
 
-        assertThat(all.size()).isGreaterThan(0);
+        assertThat(scenarios.size()).isGreaterThan(0);
     }
 }
